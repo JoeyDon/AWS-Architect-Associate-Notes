@@ -42,3 +42,40 @@
 * An AMI can't be edited. Launch and update configuration and make a new AMI
 * Can be copied between Regions
 * Permission - default your account
+
+# EC2 Pricing
+* On Demand
+* Spot Price(Off-peak) - fail tolerant 70%off roughly
+* Reserved 1 or 3 years - 75% off
+
+# EC2 Metadata
+* Address 169.254.169.254/latest/meta-data
+* Default not encrpted - unless firewall blocks
+
+# Userdata
+* 169.254.169.254/latest/user-data
+* Excuted on launch only.
+* Cfn:init in Userdata will triger on every updates
+* Cfn:signal returns the excusion result
+* EC2 doesn't intrepret data, OS needs to understand
+* Not secure. 
+* 16kb maximum. Oversize will need to pass a script and download the data.
+* Optimal: 1. EC2 baked AMI + Userdata(Boorstraping)
+* Optimal: 2. EC2 yaml including the base64 decoded userdata
+
+# EC2 Instance Roles
+* Only the InstanceProfile is attached to an instance
+* Roles is better than storing pair-keys in EC2
+
+# Parameter Store
+* String, String List, Secured String (KMS with spcific key)
+
+# EC2 Logging / Logs
+* Use Cloudwatch Agent. 
+* Best way is using Roles on EC2 to do permissions.
+* CLI : Install CWAgent => AgentConfigWizard => Config different log groups => Save to ParameterStore => Load from parameterStore => Start CWAgent
+
+# EC2 Placement Group
+* low latency, stream 5g to 10g. 
+* One AZ - One fail all fail
+* Can span VPC peers
