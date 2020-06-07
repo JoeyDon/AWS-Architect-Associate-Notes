@@ -76,6 +76,31 @@
 * CLI : Install CWAgent => AgentConfigWizard => Config different log groups => Save to ParameterStore => Load from parameterStore => Start CWAgent
 
 # EC2 Placement Group
+## 1. Cluster Groupt 
 * low latency, stream 5g to 10g. 
 * One AZ - One fail all fail
 * Can span VPC peers
+
+## 2. Spread Group
+* 7 instances per AZs limit
+* Default supported by AWS
+* Not dedicated host
+
+
+## 3. Partition Group
+* 7 Partition per AZs -> then unlimited&flexible instances in each partition
+* Can auto assign
+* Not dedicated host
+
+# EC2 Dedicated Host
+* Licensing
+* Can be shared - but can't modified.
+
+# Enhanced Network
+* Uses SR-IOV
+* One instance one virtual card
+* Higher I/O, Lower Host CPU Usage
+* Higher PPS (Packets-per-second)
+
+# EBS Optimised
+* Most instance enabled by default. Some extra costs
